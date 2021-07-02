@@ -1,0 +1,36 @@
+name: ci-test
+
+on: [push, pull_request]
+
+jobs:
+  linux-release-serial:
+    # simple serial release build using g++
+
+    name: ci-test
+    runs-on: [ubuntu-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: info
+      run: |
+        g++ -v
+        cmake --version
+    - name: 
+      run: |
+        ls
+        cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+    
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v1
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage1.xml,./coverage2.xml
+        directory: ./coverage/reports/
+        flags: unittests
+        env_vars: OS,PYTHON
+        name: codecov-umbrella
+        fail_ci_if_error: true
+        path_to_write_report: ./coverage/codecov_report.txt
+        verbose: true
+
+
