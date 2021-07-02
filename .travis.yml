@@ -43,6 +43,8 @@ before_script:
   #
   # Build Folder
   #
+  - git clone https://github.com/Jiaqi-knight/dealii.git
+  - cd dealii
   - mkdir build
   - cd build
 
@@ -84,8 +86,9 @@ matrix:
           - g++-6
     script:
       - cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
-      - make
-      - make test
+      - make -j 4
+      - make setup_tests_hello 
+      - ctest
       - cd ..
       - bash <(curl -s https://codecov.io/bash)
 
