@@ -20,7 +20,7 @@ jobs:
         ls
         mkdir build
         cd build
-        cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+        cmake -DENABLE_COVERAGE=ON
         make -j 4
         make test
     
