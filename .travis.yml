@@ -80,10 +80,10 @@ matrix:
         sources:
           - ubuntu-toolchain-r-test
         packages:
-          - gcc-6
-          - g++-6
+          - gcc-9
+          - g++-9
     script:
-      - cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-6" ..
+      - cmake -DENABLE_COVERAGE=ON -DCMAKE_CXX_COMPILER="g++-9" ..
       - make
       - make test
       - cd ..
